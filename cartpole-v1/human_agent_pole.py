@@ -11,7 +11,7 @@ accumulative_reward = 0
 for _ in range(1000):
     
     env.render()                                        # render the environment
-    
+    sleep(0.1)
     events = pygame.event.get()
     for event in events:
         if event.type == pygame.KEYDOWN:
