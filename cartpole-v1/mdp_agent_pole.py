@@ -13,11 +13,22 @@ def reward_prediction(state, action):
     """
     reward = 0
     x_position, x_velocity, pole_angle, pole_angular_velocity = state
+    
+    # add incentive for moving the cart to the same direction as the pole
     if abs(pole_angle) > 0.03:
         reward += int(pole_angle > 0) == action
     
+    # reduce incentive for moving the cart to the opposite direction to the pole if angular velocity is low
     if abs(pole_angular_velocity) < 2.0:
         reward -= int(pole_angular_velocity > 0) != action
+        
+    # try to get the cart back to the center
+    if abs(x_velocity) > 0.6 and abs(x_position) > 0.1:
+        reward -= int(x_velocity >= 0) != action
+        
+    # try to get the cart back to the center
+    if abs(x_velocity) > 0.25 and abs(pole_angular_velocity) < 0.99:
+        reward += int(x_position >= 0) == action
         
     return reward
 
