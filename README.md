@@ -16,3 +16,5 @@ You need to use python 2
 2. then, `virtualenv -p python2 .py2_env`
 3. activate virtual env `source .py2_env/bin/activate`
 4. To start gridworld in manual control mode `python gridworld.py -m`
+
+Ref: http://ai.berkeley.edu/reinforcement.html
