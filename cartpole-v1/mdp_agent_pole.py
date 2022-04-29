@@ -40,6 +40,9 @@ def agent_action(state):
     """
     rewards = [reward_prediction(state, a) for a in range(env.action_space.n)]
     
+    # rewards [ +2, -1 ]
+    # rewards [ -1, +2 ]
+    
     print("prediction", rewards, ", action=>", np.argmax(rewards) and "right" or "left")
     action = np.argmax(rewards)
     
@@ -52,8 +55,8 @@ acc_reward = 0                                          # Accumulative reward
 for _ in range(2000):                                   # Loop for simulations
     env.render()                                        # render the environment
     
-    state, reward, game_over, _ = env.step(action)           # move to the next step by the chosen action
-    action = agent_action(state)
+    state, reward, game_over, _ = env.step(action)      # move to the next step by the chosen action
+    action = agent_action(state)    # action  <-- set of Actions(0,1)
     
     acc_reward += reward
     
